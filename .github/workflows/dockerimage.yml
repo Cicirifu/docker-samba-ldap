@@ -10,6 +10,10 @@ jobs:
     - name: Build the Docker image
       run: >
           echo "$DOCKER_PASSWORD" | docker login docker.pkg.github.com -u "$DOCKER_USERNAME" --password-stdin && \
-          docker build . --file Dockerfile --tag docker-samba-ldap:latest . && \
-          docker push docker.pkg.github.com/cicirifu/docker-samba-ldap/docker-samba-ldap:latest
+          docker build . --file Dockerfile --tag $IMAGE_NAME:latest . && \
+          docker push docker.pkg.github.com/cicirifu/docker-samba-ldap/$IMAGE_NAME:latest
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }} 
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        IMAGE_NAME: docker-samba-ldap
       
