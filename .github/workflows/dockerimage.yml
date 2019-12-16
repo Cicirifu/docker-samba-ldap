@@ -8,4 +8,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker-samba-ldap:$(date +%s)
+      run: >
+          echo "$DOCKER_PASSWORD" | docker login docker.pkg.github.com -u "$DOCKER_USERNAME" --password-stdin && \
+          docker build . --file Dockerfile --tag docker-samba-ldap:latest . && \
+          docker push docker.pkg.github.com/cicirifu/docker-samba-ldap/docker-samba-ldap:latest
+      
