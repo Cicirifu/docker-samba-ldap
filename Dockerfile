@@ -8,9 +8,8 @@ RUN \
  apt-get install -y \
 	samba \
 	smbldap-tools \
-	nscd \
+	attr acl smbclient ldap-utils winbind libnss-winbind libpam-winbind krb5-user krb5-kdc \
 	libnss-ldap && \
- auth-client-config -t nss -p lac_ldap && \
  apt-get clean && \
  rm -rf \
 	/tmp/* \
