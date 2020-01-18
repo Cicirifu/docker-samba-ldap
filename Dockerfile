@@ -8,7 +8,8 @@ RUN \
  apt-get install -y \
 	samba \
 	smbldap-tools \
-    libnss-ldap && \
+	nscd \
+	libnss-ldap && \
  auth-client-config -t nss -p lac_ldap && \
  apt-get clean && \
  rm -rf \
