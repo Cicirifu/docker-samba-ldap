@@ -16,6 +16,22 @@ RUN \
 	/tmp/* \
 	/var/lib/apt/lists/* \
 	/var/tmp/*
+	
+RUN rm /etc/samba/smb.conf \
+ && echo 'include "/var/lib/samba/bind-dns/named.conf";' >> /etc/bind/named.conf \
+ && sed -i 's/^};/\ttkey-gssapi-keytab "\/var\/lib\/samba\/bind-dns\/dns.keytab";\n};/' /etc/bind/named.conf.options
+
+RUN echo "logging {\n\
+  channel default_stderr {\n\
+    stderr;\n\
+    severity debug;\n\
+    print-category yes;\n\
+    print-time yes;\n\
+  };\n\
+  category default{\n\
+    default_stderr;\n\
+  };\n\
+};" >> /etc/bind/named.conf.local
 
 COPY entrypoint.sh /entrypoint.sh
 
