@@ -6,18 +6,16 @@ ENV XDG_CONFIG_HOME="/config/xdg"
 RUN \
  apt-get update && \
  apt-get install -y \
-	samba \
+	samba attr xattr\
 	smbldap-tools \
-	attr acl smbclient ldap-utils winbind libnss-winbind libpam-winbind krb5-user krb5-kdc \
+	attr acl smbclient ldap-utils winbind libnss-winbind libpam-winbind krb5-config krb5-user krb5-kdc \
+	winbind libpam-winbind libnss-winbind libpam-krb5 libbsd-dev iproute2 bind9 dnsutils \
 	libnss-ldap && \
  apt-get clean && \
  rm -rf \
 	/tmp/* \
 	/var/lib/apt/lists/* \
 	/var/tmp/*
-
-# /etc/samba/smb.conf
-# /etc/libnss-ldap.conf
 
 COPY entrypoint.sh /entrypoint.sh
 
