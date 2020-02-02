@@ -9,7 +9,7 @@ RUN \
 	samba attr \
 	smbldap-tools \
 	attr acl smbclient ldap-utils winbind libnss-winbind libpam-winbind krb5-config krb5-user krb5-kdc \
-	winbind libpam-winbind libnss-winbind libpam-krb5 libbsd-dev iproute2 bind9 dnsutils \
+	winbind libpam-winbind libnss-winbind libpam-krb5 libbsd-dev iproute2 bind9 dnsutils crudini \
 	libnss-ldap && \
  apt-get clean && \
  rm -rf \
