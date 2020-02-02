@@ -18,8 +18,8 @@ RUN \
 	/var/tmp/*
 	
 RUN rm /etc/samba/smb.conf \
- && echo 'include "/var/lib/samba/bind-dns/named.conf";' >> /etc/bind/named.conf \
- && sed -i 's/^};/\ttkey-gssapi-keytab "\/var\/lib\/samba\/bind-dns\/dns.keytab";\n};/' /etc/bind/named.conf.options
+ && echo 'include "/usr/local/samba/bind-dns/named.conf";' >> /etc/bind/named.conf \
+ && sed -i 's/^};/\ttkey-gssapi-keytab "\/usr\/local\/samba\/bind-dns\/dns.keytab";\n};/' /etc/bind/named.conf.options
 
 RUN echo "logging {\n\
   channel default_stderr {\n\
